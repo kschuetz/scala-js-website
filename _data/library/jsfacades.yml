@@ -3,15 +3,11 @@
     - name: scala-js-dom
       url: https://github.com/scala-js/scala-js-dom
       desc: Static types for the DOM API, plus a few extensions
-      dep: '"org.scala-js" %%% "scalajs-dom" % "0.9.0"'
-    - name: scalajs-jquery
-      url: https://github.com/scala-js/scala-js-jquery
-      desc: Static types for jQuery
-      dep: '"be.doeraene" %%% "scalajs-jquery" % "0.9.0"'
+      dep: '"org.scala-js" %%% "scalajs-dom" % "0.9.5"'
     - name: jquery-facade
       url: https://github.com/jducoeur/jquery-facade
-      desc: Alternate, more strongly-typed static types for jQuery
-      dep: '"org.querki" %%% "jquery-facade" % "1.0-RC6"'
+      desc: A strongly-typed Scala.js facade for jQuery
+      dep: '"org.querki" %%% "jquery-facade" % "1.2"'
     - name: udash-jquery
       url: https://github.com/UdashFramework/scala-js-jquery
       desc: Alternate strongly typed facade for jQuery
@@ -48,6 +44,10 @@
       url: https://github.com/scalawarrior/scalajs-ace
       desc: Static types for [Ace](http://ace.c9.io/)
       dep: '"com.scalawarrior" %%% "scalajs-ace" % "0.0.1-SNAPSHOT"'
+    - name: scaladget ace
+      url: https://github.com/mathieuleclaire/scaladget
+      desc: Static types for [Ace](http://ace.c9.io).
+      dep: '"fr.iscpif.scaladget" %%% "ace" % "1.0.1"'
     - name: threejs-facade
       url: https://github.com/antonkulaga/threejs-facade
       desc: Static types for [Three.js 3D library](https://threejs.org)
@@ -64,10 +64,18 @@
       url: https://github.com/spaced/scala-js-d3
       desc: Static types for [D3.js](http://d3js.org)
       dep: '"org.singlespaced" %%% "scalajs-d3" % "0.3.4"'
-    - name: scaladget
+    - name: scaladget bootstrapslider
       url: https://github.com/mathieuleclaire/scaladget
-      desc: Static types for [D3.js](http://d3js.org), [Ace](http://ace.c9.io), [Tooltipster](http://iamceege.github.io/tooltipster/),  [Bootstrap.js](http://getbootstrap.com/) (and an API for the latter)
-      dep: '"fr.iscpif" %%% "scaladget" % "0.7.0"'
+      desc: Static types for [Bootstrap-slider](http://seiyria.com/bootstrap-slider/)
+      dep: '"fr.iscpif.scaladget" %%% "bootstrapslider" % "1.0.1"'
+    - name: scaladget bootstrapnative
+      url: https://github.com/mathieuleclaire/scaladget
+      desc: Static types for [Bootstrap-native.js](https://thednp.github.io/bootstrap.native/) and [Sortable.js](http://rubaxa.github.io/Sortable/)
+      dep: '"fr.iscpif.scaladget" %%% "bootstrapnative" % "1.0.1"'
+    - name: scaladget lunr
+      url: https://github.com/mathieuleclaire/scaladget
+      desc: Static types for [Lunr](https://lunrjs.com/)
+      dep: '"fr.iscpif.scaladget" %%% "lunr" % "1.0.1"'
     - name: Paths.scala.js
       url: https://github.com/andreaferretti/paths-scala-js
       desc: A library to generate SVG charts and shapes (wrapper over [Paths.js](https://github.com/andreaferretti/paths-js))
@@ -95,13 +103,17 @@
     - name: scalajs-jsjoda
       url: https://github.com/zoepepper/scalajs-jsjoda
       desc: 'Static types for [js-joda](http://js-joda.github.io/js-joda/)'
-      dep: '"com.zoepepper" %%% "scalajs-jsjoda" % "1.0.5"'
+      dep: '"com.zoepepper" %%% "scalajs-jsjoda" % "1.1.2"'
 - topic: UI frameworks
   libraries:
     - name: scalajs-react
       url: https://github.com/japgolly/scalajs-react
       desc: Type-safe and Scala-friendly library over Facebook's [React](http://facebook.github.io/react/).
       dep: '"com.github.japgolly.scalajs-react" %%% "core" % "0.10.0"'
+    - name: scalajs-reactjs
+      url: https://github.com/shogowada/scalajs-reactjs
+      desc: 'Develop React applications in Scala with APIs close to the original: react, react-router, and react-redux facade'
+      dep: '"io.github.shogowada" %%% "scalajs-reactjs" % "0.4.3"'
     - name: scala-js-binding
       url: https://github.com/antonkulaga/scala-js-binding
       desc: An all-Scala.js HTML binding library
@@ -113,7 +125,11 @@
     - name: scalajs-angulate
       url: https://github.com/jokade/scalajs-angulate
       desc: Another binding to AngularJS with enhancements
-      dep: '"biz.enef" %%% "scalajs-angulate" % "0.2.2"'
+      dep: '"biz.enef" %%% "scalajs-angulate" % "0.2.4"'
+    - name: angulate2
+      url: https://github.com/jokade/angulate2
+      desc: Plugin and bindings for [Angular 2+](http://angular.io) development with Scala.js.
+      dep: 'addSbtPlugin("de.surfice" % "angulate2" % "0.1.0")'
     - name: scalajs-vue
       url: https://github.com/fancellu/scalajs-vue
       desc: Scala.js bindings for [Vue.js](http://vuejs.org/) and an example application

@@ -4,8 +4,8 @@ title: JavaScript types
 ---
 
 Understanding how different types are mapped between Scala.js and JavaScript is crucial for correct interoperability.
-Some types map quite directly (like `String`) where others require some conversions. 
- 
+Some types map quite directly (like `String`) where others require some conversions.
+
 ## <a name="type-correspondence"></a> Type Correspondence
 
 Some Scala types are directly mapped to corresponding underlying JavaScript types. These correspondences can be used
@@ -151,16 +151,21 @@ The class hierarchy for these standard types is as follows:
      |   +- js.RegExp
      |   +- js.Array[A]
      |   +- js.Function
-     |       +- js.Function0[+R]
-     |       +- js.Function1[-T1, +R]
-     |       +- ...
-     |       +- js.Function22[-T1, ..., -T22, +R]
-     |       +- js.ThisFunction
-     |           +- js.ThisFunction0[-T0, +R]
-     |           +- js.ThisFunction1[-T0, -T1, +R]
-     |           +- ...
-     |           +- js.ThisFunction21[-T0, ..., -T21, +R]
+     |   |   +- js.Function0[+R]
+     |   |   +- js.Function1[-T1, +R]
+     |   |   +- ...
+     |   |   +- js.Function22[-T1, ..., -T22, +R]
+     |   |   +- js.ThisFunction
+     |   |       +- js.ThisFunction0[-T0, +R]
+     |   |       +- js.ThisFunction1[-T0, -T1, +R]
+     |   |       +- ...
+     |   |       +- js.ThisFunction21[-T0, ..., -T21, +R]
+     |   +- js.Iterable[+A]
+     |   +- js.Iterator[+A]
+     |   +- js.Promise[+A]
+     |   +- js.Thenable[+A]
      +- js.Dictionary[A]
+     +- js.Symbol
 
 Note that most of these types are similar to standard Scala types. For example,
 `js.Array[A]` is similar to `scala.Array[A]`, and `js.FunctionN` is similar to
@@ -170,11 +175,6 @@ With the exception of `js.Array[A]` and `js.Dictionary[A]`, these types have
 all the fields and methods available in the JavaScript API.
 The collection types feature the standard Scala collection API instead, so that
 they can be used idiomatically in Scala code.
-
-**0.5.x note**: In Scala.js 0.5.x, `js.Array[A]` and `js.Dictionary[A]` did not
-really have the collection API. The methods defined in JavaScript took
-precedence. This was changed in 0.6.x to avoid pitfalls when confusing the
-APIs, avoiding common JavaScript warts, and improving performance.
 
 ## Function types
 
@@ -260,7 +260,7 @@ works in the other direction, i.e., if calling the `apply` method of a
 function as its `this`. For example, the following snippet:
 
 {% highlight scala %}
-val f: js.ThisFunction1[js.Object, js.Number, js.Number] = ???
+val f: js.ThisFunction1[js.Object, Int, Int] = ???
 val o = new js.Object
 val x = f(o, 4)
 {% endhighlight %}
@@ -279,8 +279,11 @@ Because JavaScript is dynamically typed, it is not often practical, sometimes
 impossible, to give sensible type definitions for JavaScript APIs.
 
 Scala.js lets you call JavaScript in a dynamically typed fashion if you
-want to. The basic entry point is to grab a dynamically typed reference to the
-global scope, with `js.Dynamic.global`, which is of type `js.Dynamic`.
+want to. The basic entry point is `js.Dynamic.global`, which is a dynamically
+typed view of the JavaScript global scope. You can select any global variable
+of JavaScript as a a member of `js.Dynamic.global`, e.g.,
+`js.Dynamic.global.Math`, which will be typed as a
+[`js.Dynamic`]({{ site.production_url }}/api/scalajs-library/latest/#scala.scalajs.js.Dynamic).
 
 You can read and write any field of a `js.Dynamic`, as well as call any method
 with any number of arguments, and you always receive back a `js.Dynamic`.
@@ -323,7 +326,7 @@ js.Dynamic.literal("foo" -> 42, "bar" -> "foobar")
 
 ### Literal object construction using an Scala object interface
 Sometimes for a nicer interface, literal objects can be implemented using
-a trait interface. 
+a trait interface.
 The above JavaScript code can be implemented using following code:
 
 {% highlight scala %}
@@ -333,13 +336,13 @@ trait MyObject extends js.Object {
 }
 {% endhighlight %}
 
-A Scala object should be added for typesafe creation, it would help the readability 
-of the code by removing lots of `js.Dynamic.literal` all over the code. 
+A Scala object should be added for typesafe creation, it would help the readability
+of the code by removing lots of `js.Dynamic.literal` all over the code.
 
 {% highlight scala %}
 object MyObject {
-  def apply(foo: Int, bar: String): MyObject = 
-    js.Dynamic.literal(foo = foo, bar = bar).asInstanceOf[MyObject]  
+  def apply(foo: Int, bar: String): MyObject =
+    js.Dynamic.literal(foo = foo, bar = bar).asInstanceOf[MyObject]
 }
 {% endhighlight %}
 

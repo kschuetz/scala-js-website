@@ -19,32 +19,68 @@ To produce a proper JavaScript file from your code, you need to call the linker:
 
 This will perform fast Scala.js-specific optimizations and write the resulting code to a single JavaScript file. You can now use this JavaScript file in your HTML page or in whatever way you like. The resulting file in the target folder will have the suffix `-fastopt.js`.
 
+## Actually *do* something
+
+By default, Scala.js produces "libraries", that do not actually *do* anything when their `-fastopt.js` file is loaded.
+To make it do something, you need a top-level object with a `main` method:
+
+{% highlight scala %}
+object Main {
+  def main(args: Array[String]): Unit = {
+    println("Hello world!")
+  }
+}
+{% endhighlight %}
+
+as well as the following sbt setting, which, to put it simply, turns your Scala.js project into an "application" rather than a "library":
+
+{% highlight scala %}
+scalaJSUseMainModuleInitializer := true
+{% endhighlight %}
+
+Just like in a JVM project, sbt will automatically detect the object with a `main(Array[String]): Unit` method, and use it as the main method of the application.
+Now, the .js file produced by `fastOptJS` will print `"Hello world!"`.
+
+Note that this will require that there is a *unique* such object or that the one to use be explicitly set with `mainClass in Compile := Some(<name>)`.
+If you explicitly set `mainClass`, note that it needs to be set on a per-configuration basis (i.e. the part `in Compile` is essential, otherwise the setting will be ignored). For further information see the Stack Overflow entry ['How to set mainClass in ScalaJS build.sbt?'](http://stackoverflow.com/questions/34965072/how-to-set-mainclass-in-scalajs-build-sbt) (specific to Scala.js) and the Stack Overflow entry ['How to set main class in build?'](http://stackoverflow.com/questions/6467423/how-to-set-main-class-in-build) (not specific to Scala.js).
+
+**Note for Scala.js 0.6.17 and earlier:** in Scala.js 0.6.17 and earlier, the main object was required to extend the special trait [`js.JSApp`]({{ site.production_url }}/api/scalajs-library/0.6.20/#scala.scalajs.js.JSApp).
+Since 0.6.18, any object with a standard `main` method will be recognized.
+`js.JSApp` is now deprecated.
+See [the Scaladoc of `js.JSApp`]({{ site.production_url }}/api/scalajs-library/0.6.20/#scala.scalajs.js.JSApp) for migration tips.
+
 ## Running in the console
 
-You can run your application by using the `run` task:
+You can run a Scala.js application (that has `scalaJSUseMainModuleInitializer` set to `true`) by using the `run` task:
 
     sbt> run
 
-This will detect and run classes that extend
-[`js.JSApp`]({{ site.production_url }}/api/scalajs-library/{{ site.versions.scalaJS }}/#scala.scalajs.js.JSApp), while optionally prompting the user to choose a class if multiple such classes exist (fails with multiple classes if `persistLauncher := true`, see section below for details).
+This will run the `-fastopt.js` file right inside of your sbt console.
+By default, the file is run with [Node.js](http://nodejs.org/), which you need to install separately.
 
-By default, this command uses [Node.js](http://nodejs.org/), which you need to install separately, to run the produced JavaScript code.
-If your application or one of its libraries requires a DOM (which can be specified with `jsDependencies += RuntimeDOM`), you will also need to install [`jsdom`](https://github.com/tmpvar/jsdom) with `npm install jsdom`.
+**Scala.js 0.6.x only:** If your application or one of its libraries requires a DOM (which can be specified with `jsDependencies += RuntimeDOM`), you will also need to install [`jsdom`](https://github.com/tmpvar/jsdom) with `npm install jsdom`.
+`jsDependencies += RuntimeDOM` is now deprecated, and should be replaced by `jsEnv := new org.scalajs.jsenv.jsdomnodejs.JSDOMNodeJSEnv()`.
 
 There are alternative JavaScript interpreters that are available.
 See [JavaScript environments](./js-environments.html) for more details.
 
-### Disabling the optimizations
+### Deprecated: Run without `scalaJSUseMainModuleInitializer`
+
+**Scala.js 0.6.x only**
+
+It is still possible to `run` a Scala.js application that does not have `scalaJSUseMainModuleInitializer := true`.
+However, this is not recommended anymore.
+
+## Disabling the optimizations
 
 If, for some reason (for example, to make stepping through the code with a debugger more predictable), you want to disable the optimizations, you can do so with the following sbt setting:
 
 {% highlight scala %}
-scalaJSOptimizerOptions ~= { _.withDisableOptimizer(true) }
+scalaJSLinkerConfig ~= { _.withOptimizer(false) }
 {% endhighlight %}
 
-`scalaJSOptimizerOptions` contains various other options controlling the optimizer.
-See [the ScalaDoc]({{ site.production_url }}/api/sbt-scalajs/{{ site.versions.scalaJS }}/#org.scalajs.sbtplugin.OptimizerOptions)
-for details.
+`scalaJSLinkerConfig` contains various other options controlling the Scala.js linker.
+See [the Scaladoc of `StandardLinker.Config`]({{ site.production_url }}/api/scalajs-tools/{{ site.versions.scalaJS }}/#org.scalajs.core.tools.linker.StandardLinker$$Config) for details.
 
 ## Full-Optimize
 
@@ -60,10 +96,17 @@ You can run your code and tests in fullOpt stage with the following command:
 
     sbt> set scalaJSStage in Global := FullOptStage
 
-## Writing Launcher Code
+## Deprecated: Writing Launcher Code
 
-If you want the code which is used to run the main class to be written to a file, you can set `persistLauncher := true`.
-Note that this will require your main class to be either unique or explicitly set (`mainClass in Compile := Some(<name>)`).
-If you explicitly set `mainClass`, note that it needs to be set on a per-configuration basis (i.e. the part `in Compile` is essential, otherwise the setting will be ignored). For further information see the Stack Overflow entry ['How to set mainClass in ScalaJS build.sbt?'](http://stackoverflow.com/questions/34965072/how-to-set-mainclass-in-scalajs-build-sbt) (specific to Scala.js) and the Stack Overflow entry ['How to set main class in build?'](http://stackoverflow.com/questions/6467423/how-to-set-main-class-in-build) (not specific to Scala.js).
+**Scala.js 0.6.x only**
+
+For applications that do not use `scalaJSUseMainModuleInitializer := true`, it is possible to generate a small .js file that calls the `main` method, known as a "launcher" file.
+This is done with the following sbt setting:
+
+{% highlight scala %}
+persistLauncher := true
+{% endhighlight %}
 
 The resulting file in the target folder will have the suffix `-launcher.js`.
+
+This feature is deprecated: applications should migrate to using `scalaJSUseMainModuleInitializer`.

@@ -7,6 +7,150 @@ We strongly recommend using the SBT plugin, as shown in the [bootstrapping skele
 
 The CLI distribution requires `scala` and `scalac` (of the right major version) to be on the execution path. Unpack it wherever you like and add the `bin/` folder to your execution path.
 
+#### Scala.js 1.0.0-M7
+* [1.0.0-M7, Scala 2.12 (tgz, 24MB)]({{ site.production_url }}/files/scalajs_2.12-1.0.0-M7.tgz)
+* [1.0.0-M7, Scala 2.12 (zip, 24MB)]({{ site.production_url }}/files/scalajs_2.12-1.0.0-M7.zip)
+* [1.0.0-M7, Scala 2.11 (tgz, 33MB)]({{ site.production_url }}/files/scalajs_2.11-1.0.0-M7.tgz)
+* [1.0.0-M7, Scala 2.11 (zip, 33MB)]({{ site.production_url }}/files/scalajs_2.11-1.0.0-M7.zip)
+
+#### Scala.js 0.6.27
+* [0.6.27, Scala 2.12 (tgz, 22MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.27.tgz)
+* [0.6.27, Scala 2.12 (zip, 22MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.27.zip)
+* [0.6.27, Scala 2.11 (tgz, 31MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.27.tgz)
+* [0.6.27, Scala 2.11 (zip, 31MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.27.zip)
+* [0.6.27, Scala 2.10 (tgz, 25MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.27.tgz)
+* [0.6.27, Scala 2.10 (zip, 25MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.27.zip)
+
+#### Scala.js 0.6.26
+* [0.6.26, Scala 2.12 (tgz, 20MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.26.tgz)
+* [0.6.26, Scala 2.12 (zip, 20MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.26.zip)
+* [0.6.26, Scala 2.11 (tgz, 30MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.26.tgz)
+* [0.6.26, Scala 2.11 (zip, 30MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.26.zip)
+* [0.6.26, Scala 2.10 (tgz, 25MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.26.tgz)
+* [0.6.26, Scala 2.10 (zip, 25MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.26.zip)
+
+#### Scala.js 1.0.0-M6
+* [1.0.0-M6, Scala 2.12 (tgz, 18MB)]({{ site.production_url }}/files/scalajs_2.12-1.0.0-M6.tgz)
+* [1.0.0-M6, Scala 2.12 (zip, 18MB)]({{ site.production_url }}/files/scalajs_2.12-1.0.0-M6.zip)
+* [1.0.0-M6, Scala 2.11 (tgz, 28MB)]({{ site.production_url }}/files/scalajs_2.11-1.0.0-M6.tgz)
+* [1.0.0-M6, Scala 2.11 (zip, 28MB)]({{ site.production_url }}/files/scalajs_2.11-1.0.0-M6.zip)
+
+#### Scala.js 0.6.25
+* [0.6.25, Scala 2.12 (tgz, 20MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.25.tgz)
+* [0.6.25, Scala 2.12 (zip, 20MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.25.zip)
+* [0.6.25, Scala 2.11 (tgz, 30MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.25.tgz)
+* [0.6.25, Scala 2.11 (zip, 30MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.25.zip)
+* [0.6.25, Scala 2.10 (tgz, 25MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.25.tgz)
+* [0.6.25, Scala 2.10 (zip, 25MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.25.zip)
+
+#### Scala.js 1.0.0-M5
+* [1.0.0-M5, Scala 2.12 (tgz, 17MB)]({{ site.production_url }}/files/scalajs_2.12-1.0.0-M5.tgz)
+* [1.0.0-M5, Scala 2.12 (zip, 17MB)]({{ site.production_url }}/files/scalajs_2.12-1.0.0-M5.zip)
+* [1.0.0-M5, Scala 2.11 (tgz, 28MB)]({{ site.production_url }}/files/scalajs_2.11-1.0.0-M5.tgz)
+* [1.0.0-M5, Scala 2.11 (zip, 28MB)]({{ site.production_url }}/files/scalajs_2.11-1.0.0-M5.zip)
+
+#### Scala.js 0.6.24
+* [0.6.24, Scala 2.12 (tgz, 20MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.24.tgz)
+* [0.6.24, Scala 2.12 (zip, 20MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.24.zip)
+* [0.6.24, Scala 2.11 (tgz, 30MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.24.tgz)
+* [0.6.24, Scala 2.11 (zip, 30MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.24.zip)
+* [0.6.24, Scala 2.10 (tgz, 25MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.24.tgz)
+* [0.6.24, Scala 2.10 (zip, 25MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.24.zip)
+
+#### Scala.js 0.6.23
+* [0.6.23, Scala 2.12 (tgz, 19MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.23.tgz)
+* [0.6.23, Scala 2.12 (zip, 19MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.23.zip)
+* [0.6.23, Scala 2.11 (tgz, 30MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.23.tgz)
+* [0.6.23, Scala 2.11 (zip, 30MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.23.zip)
+* [0.6.23, Scala 2.10 (tgz, 25MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.23.tgz)
+* [0.6.23, Scala 2.10 (zip, 25MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.23.zip)
+
+#### Scala.js 1.0.0-M3
+* [1.0.0-M3, Scala 2.12 (tgz, 16MB)]({{ site.production_url }}/files/scalajs_2.12-1.0.0-M3.tgz)
+* [1.0.0-M3, Scala 2.12 (zip, 16MB)]({{ site.production_url }}/files/scalajs_2.12-1.0.0-M3.zip)
+* [1.0.0-M3, Scala 2.11 (tgz, 28MB)]({{ site.production_url }}/files/scalajs_2.11-1.0.0-M3.tgz)
+* [1.0.0-M3, Scala 2.11 (zip, 28MB)]({{ site.production_url }}/files/scalajs_2.11-1.0.0-M3.zip)
+
+#### Scala.js 0.6.22
+* [0.6.22, Scala 2.12 (tgz, 18MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.22.tgz)
+* [0.6.22, Scala 2.12 (zip, 18MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.22.zip)
+* [0.6.22, Scala 2.11 (tgz, 30MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.22.tgz)
+* [0.6.22, Scala 2.11 (zip, 30MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.22.zip)
+* [0.6.22, Scala 2.10 (tgz, 25MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.22.tgz)
+* [0.6.22, Scala 2.10 (zip, 25MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.22.zip)
+
+#### Scala.js 1.0.0-M2
+* [1.0.0-M2, Scala 2.12 (tgz, 16MB)]({{ site.production_url }}/files/scalajs_2.12-1.0.0-M2.tgz)
+* [1.0.0-M2, Scala 2.12 (zip, 16MB)]({{ site.production_url }}/files/scalajs_2.12-1.0.0-M2.zip)
+* [1.0.0-M2, Scala 2.11 (tgz, 28MB)]({{ site.production_url }}/files/scalajs_2.11-1.0.0-M2.tgz)
+* [1.0.0-M2, Scala 2.11 (zip, 28MB)]({{ site.production_url }}/files/scalajs_2.11-1.0.0-M2.zip)
+* [1.0.0-M2, Scala 2.10 (tgz, 23MB)]({{ site.production_url }}/files/scalajs_2.10-1.0.0-M2.tgz)
+* [1.0.0-M2, Scala 2.10 (zip, 23MB)]({{ site.production_url }}/files/scalajs_2.10-1.0.0-M2.zip)
+
+#### Scala.js 0.6.21
+* [0.6.21, Scala 2.12 (tgz, 18MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.21.tgz)
+* [0.6.21, Scala 2.12 (zip, 18MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.21.zip)
+* [0.6.21, Scala 2.11 (tgz, 29MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.21.tgz)
+* [0.6.21, Scala 2.11 (zip, 29MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.21.zip)
+* [0.6.21, Scala 2.10 (tgz, 23MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.21.tgz)
+* [0.6.21, Scala 2.10 (zip, 23MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.21.zip)
+
+#### Scala.js 0.6.20
+* [0.6.20, Scala 2.12 (tgz, 17MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.20.tgz)
+* [0.6.20, Scala 2.12 (zip, 17MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.20.zip)
+* [0.6.20, Scala 2.11 (tgz, 29MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.20.tgz)
+* [0.6.20, Scala 2.11 (zip, 29MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.20.zip)
+* [0.6.20, Scala 2.10 (tgz, 23MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.20.tgz)
+* [0.6.20, Scala 2.10 (zip, 23MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.20.zip)
+
+#### Scala.js 0.6.19
+* [0.6.19, Scala 2.12 (tgz, 16MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.19.tgz)
+* [0.6.19, Scala 2.12 (zip, 16MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.19.zip)
+* [0.6.19, Scala 2.11 (tgz, 28MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.19.tgz)
+* [0.6.19, Scala 2.11 (zip, 29MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.19.zip)
+* [0.6.19, Scala 2.10 (tgz, 23MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.19.tgz)
+* [0.6.19, Scala 2.10 (zip, 23MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.19.zip)
+
+#### Scala.js 1.0.0-M1
+* [1.0.0-M1, Scala 2.12 (tgz, 15MB)]({{ site.production_url }}/files/scalajs_2.12-1.0.0-M1.tgz)
+* [1.0.0-M1, Scala 2.12 (zip, 15MB)]({{ site.production_url }}/files/scalajs_2.12-1.0.0-M1.zip)
+* [1.0.0-M1, Scala 2.11 (tgz, 28MB)]({{ site.production_url }}/files/scalajs_2.11-1.0.0-M1.tgz)
+* [1.0.0-M1, Scala 2.11 (zip, 28MB)]({{ site.production_url }}/files/scalajs_2.11-1.0.0-M1.zip)
+* [1.0.0-M1, Scala 2.10 (tgz, 22MB)]({{ site.production_url }}/files/scalajs_2.10-1.0.0-M1.tgz)
+* [1.0.0-M1, Scala 2.10 (zip, 22MB)]({{ site.production_url }}/files/scalajs_2.10-1.0.0-M1.zip)
+
+#### Scala.js 0.6.18
+* [0.6.18, Scala 2.12 (tgz, 16MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.18.tgz)
+* [0.6.18, Scala 2.12 (zip, 16MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.18.zip)
+* [0.6.18, Scala 2.11 (tgz, 28MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.18.tgz)
+* [0.6.18, Scala 2.11 (zip, 28MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.18.zip)
+* [0.6.18, Scala 2.10 (tgz, 23MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.18.tgz)
+* [0.6.18, Scala 2.10 (zip, 23MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.18.zip)
+
+#### Scala.js 0.6.17
+* [0.6.17, Scala 2.12 (tgz, 17MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.17.tgz)
+* [0.6.17, Scala 2.12 (zip, 17MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.17.zip)
+* [0.6.17, Scala 2.11 (tgz, 29MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.17.tgz)
+* [0.6.17, Scala 2.11 (zip, 29MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.17.zip)
+* [0.6.17, Scala 2.10 (tgz, 23MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.17.tgz)
+* [0.6.17, Scala 2.10 (zip, 23MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.17.zip)
+
+#### Scala.js 0.6.16
+* [0.6.16, Scala 2.12 (tgz, 16MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.16.tgz)
+* [0.6.16, Scala 2.12 (zip, 16MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.16.zip)
+* [0.6.16, Scala 2.11 (tgz, 28MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.16.tgz)
+* [0.6.16, Scala 2.11 (zip, 28MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.16.zip)
+* [0.6.16, Scala 2.10 (tgz, 23MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.16.tgz)
+* [0.6.16, Scala 2.10 (zip, 23MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.16.zip)
+
+#### Scala.js 0.6.15
+* [0.6.15, Scala 2.12 (tgz, 15MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.15.tgz)
+* [0.6.15, Scala 2.12 (zip, 15MB)]({{ site.production_url }}/files/scalajs_2.12-0.6.15.zip)
+* [0.6.15, Scala 2.11 (tgz, 27MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.15.tgz)
+* [0.6.15, Scala 2.11 (zip, 27MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.15.zip)
+* [0.6.15, Scala 2.10 (tgz, 23MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.15.tgz)
+* [0.6.15, Scala 2.10 (zip, 23MB)]({{ site.production_url }}/files/scalajs_2.10-0.6.15.zip)
+
 #### Scala.js 0.6.14
 * [0.6.14, Scala 2.11 (tgz, 26MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.14.tgz)
 * [0.6.14, Scala 2.11 (zip, 26MB)]({{ site.production_url }}/files/scalajs_2.11-0.6.14.zip)

@@ -13,6 +13,8 @@ for examples and documentation.
 
 We give a simple example of how such a project, we call it `foo`, could look. You can find this project on [GitHub](https://github.com/scala-js/scalajs-cross-compile-example).
 
+**Scala.js 1.x:** Scala.js 1.x uses [sbt-crossproject](https://github.com/scala-native/sbt-crossproject), which is entirely backward source compatible with the API described here.
+
 ## Directory Structure
 
     <project root>
@@ -57,6 +59,8 @@ lazy val foo = crossProject.in(file(".")).
 lazy val fooJVM = foo.jvm
 lazy val fooJS = foo.js
 {% endhighlight %}
+
+Note that `enablePlugins(ScalaJSPlugin)` **must not** be included when using `crossProject`.
 
 You now have separate projects to compile towards Scala.js and Scala JVM. Note the same name given to both projects, this allows them to be published with corresponding artifact names:
 

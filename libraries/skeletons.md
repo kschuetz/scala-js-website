@@ -5,6 +5,10 @@ title: Project Skeletons
 
 These application skeletons get you started in no time!
 
+
+### [Example app with Docker and backend](https://gitlab.com/bullbytes/scala-js-example)
+A minimal but complete web application showing how to use Scala.js together with a server (Akka HTTP) and a database (Postgres). The app is dockerized and easy to set up.
+
 ### [workbench-example-app](https://github.com/lihaoyi/workbench-example-app)
 Skeleton application using [Scala.js workbench](https://github.com/lihaoyi/scala-js-workbench) for live-reloading in the
 browser, together with a collection of sample applications developed using it
@@ -28,3 +32,6 @@ D3.js lib.
 
 ### [Udash Generator](http://guide.udash.io/#/bootstrapping/generators)
 Project generator for the Udash framework - creates a customized, complete and runnable Udash based application.
+
+### [Scala Google Spreadsheets](https://github.com/sherpal/Scala-Google-Spreadsheets)
+Allows to create [Google custom functions](https://developers.google.com/apps-script/guides/sheets/functions) in [Google SpreadSheets](https://www.google.com/intl/en_UK/sheets/about/) with Scala.

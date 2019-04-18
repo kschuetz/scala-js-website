@@ -1,26 +1,45 @@
 ---
 layout: doc
-title: Scala.js-defined JS classes
+title: Non-native JS types (aka Scala.js-defined JS types)
 ---
 
-As explained in detail in the [guide to write facade types](./facade-types.html), classes, traits and objects inheriting from `js.Any` are native by default.
-To implement a JavaScript class in Scala.js, it should be annotated with `@ScalaJSDefined`:
+A non-native JS type, aka Scala.js-defined JS type, is a JavaScript type implemented in Scala.js code.
+This is in contrast to native JS types, described in [the facade types reference](./facade-types.html), which represent APIs implemented in JavaScript code.
+
+## About `@ScalaJSDefined`
+
+In Scala.js 0.6.x, the `@ScalaJSDefined` is necessary to declare a non-native JS type, also called a Scala.js-defined JS type.
+Starting from Scala.js 1.x however, the annotation is not necessary anymore.
+Since Scala.js 0.6.17, you can opt-in for the new semantics of 1.x where `@ScalaJSDefined` is not necessary, by giving the option `-P:scalajs:sjsDefinedByDefault` to scalac.
+In an sbt build, this is done with
+
+{% highlight scala %}
+scalacOptions += "-P:scalajs:sjsDefinedByDefault"
+{% endhighlight %}
+
+The present documentation assumes that you are using this option (or Scala.js 1.x).
+Code snippets mention the necessary `@ScalaJSDefined` in comments as a reference for older versions.
+
+## Defining a non-native JS type
+
+Any class, trait or object that inherits from `js.Any` is a JS type.
+Often, it will extend `js.Object` which itself extends `js.Any`:
 
 {% highlight scala %}
 import scala.scalajs.js
-import js.annotation._
+import scala.scalajs.js.annotation._
 
-@ScalaJSDefined
+// @ScalaJSDefined
 class Foo extends js.Object {
   val x: Int = 4
   def bar(x: Int): Int = x + 1
 }
 {% endhighlight %}
 
-Such classes are called Scala.js-defined JS classes.
+Such classes are called *non-native JS classes*, and are also known as Scala.js-defined JS classes (especially in 0.6.x).
 All their members are automatically visible from JavaScript code.
-The class itself (its constructor function) is not visible by default, but can be exported with `@JSExport`.
-Moreover, they can extend JavaScript classes (native or Scala.js-defined), and, if exported, be extended by JavaScript classes.
+The class itself (its constructor function) is not visible by default, but can be exported with `@JSExportTopLevel`.
+Moreover, they can extend JavaScript classes (native or not), and, if exported, be extended by JavaScript classes.
 
 Being JavaScript types, the Scala semantics do not apply to these classes.
 Instead, JavaScript semantics apply.
@@ -29,13 +48,13 @@ For example, overloading is dispatched at run-time, instead of compile-time.
 
 ## Restrictions
 
-Scala.js-defined JS types have the following restrictions:
+Non-native JS types have the following restrictions:
 
 * Private methods cannot be overloaded.
 * Qualified private members, i.e., `private[EnclosingScope]`, must be `final`.
-* Scala.js-defined JS classes, traits and objects cannot directly extend native JS traits (it is allowed to extend a native JS class).
-* Scala.js-defined JS traits cannot declare concrete term members (i.e., they must all be abstract) unless their right-hand-side is exactly `= js.undefined`.
-* Scala.js-defined JS classes and objects must extend a JS class, for example `js.Object` (they cannot directly extend `AnyRef with js.Any`).
+* Non-native JS classes, traits and objects cannot directly extend native JS traits (it is allowed to extend a native JS class).
+* Non-native JS traits cannot declare concrete term members (i.e., they must all be abstract) unless their right-hand-side is exactly `= js.undefined`.
+* Non-native JS classes and objects must extend a JS class, for example `js.Object` (they cannot directly extend `AnyRef with js.Any`).
 * Declaring a method named `apply` without `@JSName` is illegal.
 * Declaring a method with `@JSBracketSelect` or `@JSBracketCall` is illegal.
 * Mixing fields, pairs of getter/setter, and/or methods with the same name is illegal. (For example `def foo: Int` and `def foo(x: Int): Int` cannot both exist in the same class.)
@@ -54,7 +73,7 @@ Scala.js-defined JS types have the following restrictions:
 In other words, the following definition:
 
 {% highlight scala %}
-@ScalaJSDefined
+// @ScalaJSDefined
 class Foo extends js.Object {
   val x: Int = 5
   var y: String = "hello"
@@ -101,7 +120,7 @@ All other members, including protected ones, are visible to JavaScript.
 For example:
 
 {% highlight scala %}
-@ScalaJSDefined
+// @ScalaJSDefined
 class Foo extends js.Object {
   override def toString(): String = super.toString() + " in Foo"
 }
@@ -129,37 +148,37 @@ For fields, getters and setters, the ES 6 spec is a bit complicated, but it esse
 In particular, calling a super getter or setter works as expected.
 
 
-### Scala.js-defined JS object
+### Non-native JS object
 
-A Scala.js-defined JS `object` is a singleton instance of Scala.js-defined JS class.
+A non-native JS `object` is a singleton instance of a non-native JS class.
 There is nothing special about this, it's just like Scala objects.
 
-Scala.js-defined JS objects are not automatically visible to JavaScript.
-They can be `@JSExport`ed just like Scala object: they will appear as a 0-argument function returning the instance of the object.
+Non-native JS objects are not automatically visible to JavaScript.
+They can be exported with `@JSExportTopLevel`, just like Scala object: they will appear as a 0-argument function returning the instance of the object.
 
 
-### Scala.js-defined JS traits
+### Non-native JS traits
 
 Traits and interfaces do not have any existence in JavaScript.
 At best, they are documented contracts that certain classes must satisfy.
-So what does it mean to have native JS traits and Scala.js-defined JS traits?
+So what does it mean to have native and non-native JS traits?
 
 Native JS traits can only be extended by native JS classes, objects and traits.
-In other words, a Scala.js-defined JS class/trait/object cannot extend a native JS trait.
-They can only extend Scala.js-defined JS traits.
+In other words, a non-native JS class/trait/object cannot extend a native JS trait.
+They can only extend non-native JS traits.
 
-Term members (`val`s, `var`s and `def`s) in Scala.js-defined JS traits must:
+Term members (`val`s, `var`s and `def`s) in non-native JS traits must:
 
 * either be abstract,
 * or have `= js.undefined` as right-hand-side (and not be a `def` with `()`).
 
 {% highlight scala %}
-@ScalaJSDefined
+// @ScalaJSDefined
 trait Bar extends js.Object {
   val x: Int
   val y: Int = 5 // illegal
   val z: js.UndefOr[Int] = js.undefined
-  
+
   def foo(x: Int): Int
   def bar(x: Int): Int = x + 1 // illegal
   def foobar(x: Int): js.UndefOr[Int] = js.undefined // illegal
@@ -172,7 +191,7 @@ in a JavaScript trait (necessarily with `= js.undefined`) are *not* exposed to J
 For example, implementing (the legal parts of) `Bar` in a subclass:
 
 {% highlight scala %}
-@ScalaJSDefined
+// @ScalaJSDefined
 class Babar extends Bar {
   val x: Int = 42
 
@@ -204,14 +223,96 @@ The distinction is rarely relevant, because `babar.z` will return `undefined` in
 and in Scala.js if `babar` does not have a field `z`.
 
 
-### Anonymous classes
+### Static members
 
-An anonymous class extending `js.Any` is automatically Scala.js-defined.
-This is particularly useful to create typed object literals, in the presence of a Scala.js-defined JS trait describing an interface.
+When defining a non-native JS class (not a trait nor an object), it is also possible to define static members.
+Static members must be defined in the companion object of the class, and annotated with `@JSExportStatic`.
 For example:
 
 {% highlight scala %}
-@ScalaJSDefined
+// @ScalaJSDefined
+class Foo extends js.Object
+
+object Foo {
+  @JSExportStatic
+  val x: Int = 5
+
+  @JSExportStatic
+  var y: String = "hello"
+
+  @JSExportStatic
+  def z: Int = 42
+  @JSExportStatic
+  def z_=(v: Int): Unit = println("z = " + v)
+
+  @JSExportStatic
+  def foo(x: Int): Int = x + 1
+}
+{% endhighlight %}
+
+defines a JavaScript class `Foo` with a variety of static members.
+It can be understood as if defined in JavaScript as:
+
+{% highlight javascript %}
+class Foo extends global.Object {
+  static get z() {
+    return 42;
+  }
+  static set z(v) {
+    console.log("z = " + v);
+  }
+  static foo(x) {
+    return x + 1;
+  }
+}
+Foo.x = 5;
+Foo.y = "hello";
+{% endhighlight %}
+
+Note that JavaScript doesn't have any declarative syntax for static fields, hence the two imperative assignments at the end.
+
+#### Restrictions
+
+* The companion object must be a Scala object, i.e., it cannot extend `js.Any`.
+* `lazy val`s cannot be marked with `@JSExportStatic`
+* Static *fields* (`val`s and `var`s) must be defined before any other (non-static) field, as well as before any constructor statement.
+
+As an example of the last bullet, the following snippet is illegal:
+
+{% highlight scala %}
+// @ScalaJSDefined
+class Foo extends js.Object
+
+object Foo {
+  val x: Int = 5
+
+  @JSExportStatic
+  val y: String = "hello" // illegal, defined after `x` which is non-static
+}
+{% endhighlight %}
+
+and so is the following:
+
+{% highlight scala %}
+// @ScalaJSDefined
+class Foo extends js.Object
+
+object Foo {
+  println("Initializing Foo")
+
+  @JSExportStatic
+  val y: String = "hello" // illegal, defined after the `println` statement
+}
+{% endhighlight %}
+
+
+### Anonymous classes
+
+Anonymous JS classes are particularly useful to create typed object literals, in the presence of a non-native JS trait describing an interface.
+For example:
+
+{% highlight scala %}
+// @ScalaJSDefined
 trait Position extends js.Object {
   val x: Int
   val y: Int
@@ -223,13 +324,15 @@ val pos = new Position {
 }
 {% endhighlight %}
 
+Note that anonymous classes extending `js.Any` are always non-native, even in 0.6.x without `-P:scalajs:sjsDefinedByDefault` nor `@ScalaJSDefined`.
+
 #### Use case: configuration objects
 
 For configuration objects that have fields with default values, concrete members with `= js.undefined` can be used in the trait.
 For example:
 
 {% highlight scala %}
-@ScalaJSDefined
+// @ScalaJSDefined
 trait JQueryAjaxSettings extends js.Object {
   val data: js.UndefOr[js.Object | String | js.Array[Any]] = js.undefined
   val contentType: js.UndefOr[Boolean | String] = js.undefined
@@ -295,7 +398,7 @@ Our advice: do not use the reflective calls language import.
 ### Run-time overloading
 
 {% highlight scala %}
-@ScalaJSDefined
+// @ScalaJSDefined
 class Foo extends js.Object {
   def bar(x: String): String = "hello " + x
   def bar(x: Int): Int = x + 1
@@ -308,7 +411,7 @@ println(foo.bar("world")) // choose at run-time which one to call
 Even though typechecking will resolve to the first overload at compile-time to decide the result type of the function, the actual call will re-resolve at run-time, using the dynamic type of the parameter. Basically something like this is generated:
 
 {% highlight scala %}
-@ScalaJSDefined
+// @ScalaJSDefined
 class Foo extends js.Object {
   def bar(x: Any): Any = {
     x match {
@@ -323,7 +426,7 @@ Besides the run-time overhead incurred by such a resolution, this can cause weir
 For example:
 
 {% highlight scala %}
-@ScalaJSDefined
+// @ScalaJSDefined
 class Foo extends js.Object {
   def bar(x: String): String = bar(x: Any)
   def bar(x: Any): String = "bar " + x
@@ -342,7 +445,7 @@ With run-time overload resolution, however, the type tests are executed again, a
 
 ### `js.constructorOf[C]`
 
-To obtain the JavaScript constructor function of a Scala.js-defined JS class without instantiating it nor exporting it, you can use [`js.constructorOf[C]`]({{ site.production_url }}/api/scalajs-library/{{ site.versions.scalaJS }}/#scala.scalajs.js.package@constructorOf[T<:scala.scalajs.js.Any]:scala.scalajs.js.Dynamic), whose signature is:
+To obtain the JavaScript constructor function of a JS class (native or not) without instantiating it nor exporting it, you can use [`js.constructorOf[C]`]({{ site.production_url }}/api/scalajs-library/latest/#scala.scalajs.js.package@constructorOf[T<:scala.scalajs.js.Any]:scala.scalajs.js.Dynamic), whose signature is:
 
 {% highlight scala %}
 package object js {
@@ -351,7 +454,6 @@ package object js {
 {% endhighlight %}
 
 `C` must be a class type (i.e., such that you can give it to `classOf[C]`) and refer to a JS *class* (not a trait nor an object).
-It can be a native JS class or a Scala.js-defined JS class.
 The method returns the JavaScript constructor function (aka the class value) for `C`.
 
 This can be useful to give to JavaScript libraries expecting constructor functions rather than instances of the classes.
@@ -364,7 +466,7 @@ For example:
 {% highlight scala %}
 def instantiate[C <: js.Any : js.ConstructorTag]: C =
   js.Dynamic.newInstance(js.constructorTag[C].constructor)().asInstanceOf[C]
-  
+
 val newEmptyJSArray = instantiate[js.Array[Int]]
 {% endhighlight %}
 
@@ -373,7 +475,7 @@ Implicit expansion will desugar the above code into:
 {% highlight scala %}
 def instantiate[C <: js.Any](implicit tag: js.ConstructorTag[C]): C =
   js.Dynamic.newInstance(tag.constructor)().asInstanceOf[C]
-  
+
 val newEmptyJSArray = instantiate[js.Array[Int]](
     new js.ConstructorTag[C](js.constructorOf[js.Array[Int]]))
 {% endhighlight %}
